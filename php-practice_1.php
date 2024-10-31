@@ -14,6 +14,8 @@ echo $num;
 echo $num / 2;
 
 // Q3 日付操作
+date_default_timezone_set('Asia/Tokyo');
+
 $deta = date('Y年m月d日 H時i分s秒');
 
 echo '現在時刻は、' . $deta . 'です。';
@@ -21,15 +23,11 @@ echo '現在時刻は、' . $deta . 'です。';
 // Q4 条件分岐-1 if文
 $device = 'windows';
 
-if ($device === 'windows') {
-    echo '使用OSは、windowsです。';
+if ($device === 'windows' || $device === 'mac') {
+    echo '使用OSは、' . $device . 'です。';
 } else {
-    if ($device === 'mac') {
-        echo '使用OSは、macです。';
-    } else {
         echo 'どちらでもありません。';
     }
-}
 
 // Q5 条件分岐-2 三項演算子
 $age = 18;
@@ -58,7 +56,7 @@ foreach ($prefectures as $prefecture => $capital) {
 }
 
 // Q8 連想配列-2
-if ($prefecture == '埼玉県') {
+if ($prefectures['埼玉県'] === 'さいたま市') {
     echo $prefecture . "の県庁所在地は" . $capital . "です。\n";
 }
 
@@ -67,10 +65,7 @@ $prefectures['北海道'] = '札幌市';
 $prefectures['沖縄県'] = '那覇市';
 
 foreach ($prefectures as $prefecture => $capital) {
-    if ($prefecture === '東京都' || $prefecture === '千葉県'
-    || $prefecture === '神奈川県' || $prefecture === '茨城県'
-    || $prefecture === '群馬県' || $prefecture === '栃木県'
-    || $prefecture === '埼玉県') {
+    if (in_array($prefecture, ['東京都', '千葉県', '神奈川県', '茨城県', '群馬県', '栃木県', '埼玉県'])) {
         echo $prefecture . "の県庁所在地は" . $capital . "です。\n";
     } else {
         echo $prefecture . "は関東地方ではありません。\n";
@@ -116,22 +111,25 @@ function evaluateGrade($grade)
     switch ($grade) {
         case "A":
         case "B":
-            echo "合格です。\n";
+            return "合格です。\n";
             break;
     
         case "C":
-            echo "合格ですが追加課題があります。\n";
+            return "合格ですが追加課題があります。\n";
             break;
     
         case "D":
-            echo "不合格です。\n";
+            return "不合格です。\n";
             break;
     
         default:
-            echo "判定不明です。講師に問い合わせてください。\n";
+            return "判定不明です。講師に問い合わせてください。\n";
             break;
     }
 }
 
-evaluateGrade("B");
-evaluateGrade("F");
+$message = evaluateGrade("B");
+echo $message;
+
+$message = evaluateGrade("F");
+echo $message;

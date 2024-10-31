@@ -94,6 +94,5 @@ echo $now->modify('-1 months')->format("Y-m-d\n");
 
 // 問題2
 $date2 = new DateTime('1992-04-25');
-$interval = $now->diff($date2);
 
-echo $interval->format('あの日から%a日経過しました。');
+echo $now->diff($date2)->format('あの日から%a日経過しました。');
