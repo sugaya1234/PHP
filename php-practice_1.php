@@ -56,8 +56,10 @@ foreach ($prefectures as $prefecture => $capital) {
 }
 
 // Q8 連想配列-2
-if ($prefectures['埼玉県'] === 'さいたま市') {
+foreach ($prefectures as $prefecture => $capital) {
+    if ($prefecture === '埼玉県') {
     echo $prefecture . "の県庁所在地は" . $capital . "です。\n";
+    }
 }
 
 // Q9 連想配列-3
